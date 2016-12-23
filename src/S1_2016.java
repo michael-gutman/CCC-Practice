@@ -7,7 +7,7 @@ import java.util.ArrayList;
  * Ragaman
  * Given 2 strings, determines if the second is a wildcard anagram of the first.
  */
-public class S1_2017 {
+public class S1_2016 {
 
 	public static void main(String[] args) {
 		BufferedReader r = new BufferedReader(new InputStreamReader(System.in));
