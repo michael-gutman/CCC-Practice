@@ -16,11 +16,11 @@ public class S5_2016 {
 			int[] curr = cells.clone();
 			for (int j = 0; j<N; j++) {
 				if (j == 0) {
-					cells[j] = Math.abs(curr[j+1] - curr[N-1]);
+					cells[j] = curr[j+1] == curr[N-1] ? 0 : 1;
 				} else if (j > 0 && j < N - 1) {
-					cells[j] = Math.abs(curr[j+1] - curr[j-1]);
+					cells[j] = curr[j+1] == curr[j-1] ? 0 : 1;
 				} else {
-					cells[j] = Math.abs(curr[0] - curr[j-1]);
+					cells[j] = curr[0] == curr[j-1] ? 0 : 1;
 				}
 			}
 		}
