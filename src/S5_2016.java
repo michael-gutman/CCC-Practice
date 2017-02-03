@@ -12,20 +12,36 @@ public class S5_2016 {
 		long T = Long.parseLong(NT[1]);
 		int[] cells;
 		cells = Stream.of(r.readLine().split("")).mapToInt(Integer::parseInt).toArray();
-		for (long i = 0; i < T; i++) {
-			int[] curr = cells.clone();
-			for (int j = 0; j<N; j++) {
-				if (j == 0) {
-					cells[j] = curr[j+1] == curr[N-1] ? 0 : 1;
-				} else if (j > 0 && j < N - 1) {
-					cells[j] = curr[j+1] == curr[j-1] ? 0 : 1;
-				} else {
-					cells[j] = curr[0] == curr[j-1] ? 0 : 1;
-				}
-			}
-		}
+
+		//int pow = (int) (Math.log10(L)/Math.log10(2));
+
+		simulate(N, T, cells);
+
 		for (int k = 0; k < cells.length; k++) {
 			System.out.print(cells[k]);
 		}
+	}
+
+	private static void simulate(int N, Long T, int[] cells) {
+		long L = powOf2LessThan(T);
+		L = L < T ? L : L>>1;
+		int[] curr = cells.clone();
+		for (int i=0; i<N; i++) {
+			int prev = (int) ((i - L)%N);
+			prev = prev >= 0 ? prev : prev + N;
+			int next = (int) ((i + L)%N);
+			next = next >= 0 ? next : next + N;
+			cells[i] = curr[next] == curr[prev] ? 0 : 1;
+		}
+		T -= L;
+		if (T > 0) simulate(N, T, cells);
+	}
+
+	private static long powOf2LessThan(long n) {
+		long pow = 1;
+		do {
+			pow <<= 1;
+		} while(pow < n);
+		return pow;
 	}
 }
