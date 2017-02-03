@@ -12,11 +12,7 @@ public class S5_2016 {
 		long T = Long.parseLong(NT[1]);
 		int[] cells;
 		cells = Stream.of(r.readLine().split("")).mapToInt(Integer::parseInt).toArray();
-
-		//int pow = (int) (Math.log10(L)/Math.log10(2));
-
 		simulate(N, T, cells);
-
 		for (int k = 0; k < cells.length; k++) {
 			System.out.print(cells[k]);
 		}
